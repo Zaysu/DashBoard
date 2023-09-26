@@ -193,12 +193,22 @@ export default function App() {
               </div>
               </center>
             </div>
-            <div className="bg-gray-800 p-4 rounded-lg shadow-md" style={{ width: '800px', height: '460px' }}>
+          
+           
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-2 mt-5">
+          <div className="bg-gray-800 p-4 rounded-lg shadow-md" style={{ width: '100%', height: '400px' }}>
               <h4 className="text-lg font-semibold text-gray-300">Desempenho Trimestral de Vendas</h4>
               <p className="text-gray-400 mt-2">Comparação das Vendas por Trimestre no Ano Atual</p>
               <Bar options={options} data={data} />
             </div>
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md" style={{ width: '100%', height: '400px' }}>
+              <h4 className="text-lg font-semibold text-gray-300">Desempenho Anual de Vendas</h4>
+              <p className="text-gray-400 mt-2">Comparação das Vendas por Trimestre no Ano Atual</p>
+              <Bar options={options} data={data} />
+            </div>
           </div>
+          
         </main>
       </div>
     </div>
