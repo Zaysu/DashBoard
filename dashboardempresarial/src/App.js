@@ -35,19 +35,19 @@ const options = {
   },
 };
 
-const labels = ['1', '2', '3', '4', '5', '6', '7'];
+const labels = ['1', '2', '3', '4'];
 export const data = {
   labels,
   datasets: [
       {
-          label: 'Dataset vermelho',
+          label: 'Expectativa de Vendas',
           data: labels.map((() => Math.floor(Math.random() * 100))),
           backgroundColor: 'rgba(255, 99, 132, 0.5)',
           borderColor: 'red',
           borderWidth: 1
       },
       {
-          label: 'Dataset azul',
+          label: 'Vendas Realizadas',
           data: labels.map((() => Math.floor(Math.random() * 100))),
           backgroundColor: 'rgba(53, 162, 235, 0.5)',
           borderColor: 'blue',
