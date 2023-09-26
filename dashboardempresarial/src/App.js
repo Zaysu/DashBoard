@@ -227,7 +227,7 @@ export default function App() {
           <div className="flex">
             <div className="bg-gray-800 p-4 rounded-lg shadow-md" style={{width: '100%', height: '460px', margin: 20}}>
               <h4 className="text-lg font-semibold text-gray-300">Desempenho Trimestral de Vendas</h4>
-              <p className="text-gray-400 mt-2">Comparação das Vendas por Trimestre no Ano Atual</p>
+              <p className="text-gray-400 mt-2">Comparação das Expectativas x Vendas por Trimestre no Ano Atual</p>
               <Bar options={options} data={data} />
             </div>
             <div className="bg-gray-800 p-4 rounded-lg shadow-md" style={{width: '50%', margin: 20 }}>
