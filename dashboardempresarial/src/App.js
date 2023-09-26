@@ -1,5 +1,6 @@
 import React from 'react';
 import { Circle, Line } from 'rc-progress';
+import {Gauge, ListDashes, Basket, CircleDashed, Browsers, CurrencyCircleDollar } from "@phosphor-icons/react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -94,27 +95,27 @@ export default function App() {
             <a
               href="/"
               className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
-              Dashboard
+              <ListDashes size={32} /> | Dashboard
             </a>
             <a
               href="/"
               className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
-              Kanban
+              <CircleDashed size={32} /> | Kanban
             </a>
             <a
               href="/"
               className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
-              Inbox
+               <Gauge size={32} /> | Inbox
             </a>
             <a
               href="/"
               className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
-              E-Commerce
+              <Basket size={32} /> | E-Commerce
             </a>
             <a
               href="/"
               className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
-              Pages
+             <Browsers size={32} /> | Pages
             </a>
           </nav>
         </aside>
@@ -123,7 +124,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div className="bg-gray-800 p-4 rounded-lg shadow-md">
-              <h4 className="text-lg font-semibold text-gray-300">Gráfico de Desempenho Empresarial</h4>
+            <CurrencyCircleDollar size={32} /> <h4 className="text-lg font-semibold text-gray-300">Gráfico de Desempenho Empresarial</h4>
               <p className="text-gray-400 mt-2">Análise de Desempenho Anual</p>
               <br/>
               <div style={{ margin: 20 }}>
@@ -157,7 +158,7 @@ export default function App() {
               </center>
             </div>
             <div className="bg-gray-800 p-4 rounded-lg shadow-md">
-              <h4 className="text-lg font-semibold text-gray-300">Gráfico de Tendências de Venda</h4>
+            <CurrencyCircleDollar size={32} /> <h4 className="text-lg font-semibold text-gray-300">Gráfico de Tendências de Venda</h4>
               <p className="text-gray-400 mt-2">Análise das Vendas Mensais ao Longo do Ano.</p>
               <div style={{ margin: 20 }}>
               <div style={{ fontSize: '19px' }}>Porcentagem: {40}%</div>
@@ -190,7 +191,7 @@ export default function App() {
               </center>
             </div>
             <div className="bg-gray-800 p-4 rounded-lg shadow-md">
-              <h4 className="text-lg font-semibold text-gray-300">Gráfico de Avaliação de Metas</h4>
+            <CurrencyCircleDollar size={32} /> <h4 className="text-lg font-semibold text-gray-300">Gráfico de Avaliação de Metas</h4>
               <p className="text-gray-400 mt-2">Acompanhamento do Progresso em Direção às Metas Empresariais</p>
               <div style={{ margin: 20 }}>
               <div style={{ fontSize: '19px' }}>Porcentagem: {50}%</div>
@@ -225,13 +226,13 @@ export default function App() {
           </div>
 
           <div className="flex">
-            <div className="bg-gray-800 p-4 rounded-lg shadow-md" style={{width: '100%', height: '460px', margin: 20}}>
-              <h4 className="text-lg font-semibold text-gray-300">Desempenho Trimestral de Vendas</h4>
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md" style={{width: '100%', height: '820px', margin: 20}}>
+            <CurrencyCircleDollar size={32} /> <h4 className="text-lg font-semibold text-gray-300">Desempenho Trimestral de Vendas</h4>
               <p className="text-gray-400 mt-2">Comparação das Expectativas x Vendas por Trimestre no Ano Atual</p>
               <Bar options={options} data={data} />
             </div>
             <div className="bg-gray-800 p-4 rounded-lg shadow-md" style={{width: '50%', margin: 20 }}>
-              <h4 className="text-lg font-semibold text-gray-300">Desempenho Mensal de Vendas</h4>
+              <h4 className="text-lg font-semibold text-gray-300"> <CurrencyCircleDollar size={32} /> Desempenho Mensal de Vendas</h4>
               <p className="text-gray-400 mt-2">Comparação das Vendas por Mês no Ano Atual</p>
               <div style={{ width: '100%', height: 'auto'}}>
                   <Pie data={dataPie} />
