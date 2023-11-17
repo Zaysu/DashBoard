@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Circle, Line } from 'rc-progress';
-import Navigation from "./Navigation"
+import Navigation from "../components/Navigation"
 import {CurrencyCircleDollar } from "@phosphor-icons/react";
 import {
   Chart as ChartJS,
@@ -88,7 +88,7 @@ export const dataPie = {
 };
 
 
-const VendasMensais = () => {
+const Tendencias = () => {
   const [vendasMensais, setVendasMensais] = useState([]);
 
   useEffect(() =>{
@@ -232,4 +232,4 @@ const VendasMensais = () => {
   );
 }
 
-export default VendasMensais;
+export default Tendencias;

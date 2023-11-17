@@ -1,12 +1,12 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import Desenpenho from "./components/Desenpenho";
-import Tendencias from "./components/Tendencias";
-import Avaliacao from "./components/Avaliacao";
-import VendasMensais from "./components/VendasMensais";
-import VendasTrimestre from './components/VendasTrimestre';
+import Home from "./pages/Home";
+import Desenpenho from "./pages/Desenpenho";
+import Tendencias from "./pages/Tendencias";
+import Avaliacao from "./pages/Avaliacao";
+import VendasMensais from "./pages/VendasMensais";
+import VendasTrimestre from './pages/VendasTrimestre';
 function App() {
   return (
     <BrowserRouter>
