@@ -10,5 +10,5 @@ Matricula: 202011751
 Alunos: Leonardo Avelar
 Matricula: 202110529
 
-Alunos: marcelo goncalves braga costa
+Alunos: Marcelo Goncalves Braga Costa
 Matricula: 202110474
