@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Circle, Line } from 'rc-progress';
 import Navigation from "./Navigation"
 import {CurrencyCircleDollar } from "@phosphor-icons/react";
@@ -13,6 +13,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar, Pie } from 'react-chartjs-2';
+import { getVendasMensais } from '../services/HomeService';
 
 ChartJS.register(
   CategoryScale,
@@ -39,6 +40,7 @@ const options = {
 
 const labels = ['1', '2', '3', '4'];
 export const data = {
+  
   labels,
   datasets: [
       {
@@ -87,6 +89,18 @@ export const dataPie = {
 
 
 const Home = () => {
+  const [vendasMensais, setVendasMensais] = useState([]);
+
+  useEffect(() =>{
+    let mounted = true;
+    getVendasMensais().then(
+        data =>{
+            if(mounted){
+              setVendasMensais(data)
+            }
+        })
+        return () => mounted = false;
+}, [])
 
   return (
     <div className='bg-gray-900 text-gray-50 h-screen flex flex-col'>
