@@ -1,13 +1,3 @@
-AUTOR
-
-Marcelo Goncalves Braga Costa
-
-matricula: 202110474
-
-
-
-
-
 **************** feito em ambiente LINUX UBUNTU 
 
 pip3 freeze > requirements.txt
