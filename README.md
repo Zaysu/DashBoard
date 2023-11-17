@@ -1,4 +1,20 @@
-**************** feito em ambiente LINUX UBUNTU 
+Alunos: José Carlos Romão da silva Junior 
+Matricula: 202110818
+
+Aluno: Marcelo Gonçalves Braga Costa
+Matricula: 202110474
+
+Aluno: Alex Junior Mahia Amaral
+Matricula: 202111245
+
+Aluno: Renan Magalhães Farias
+Matricula: 202011751
+
+Aluno: Leonardo Avelar
+Matricula: 202110529
+
+
+**************** Linux Ubuntu **************** 
 
 pip3 freeze > requirements.txt
 
@@ -17,6 +33,6 @@ pip3 install -r requirements.txt
 python3 manage.py runserver
 
 *******front 
-npm i
+npm install
 
-npm run dev
+npm start
