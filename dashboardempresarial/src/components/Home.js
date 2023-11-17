@@ -2,6 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import DashboardCard from './DashboardCard';
 import { pieChartData } from './ChartData'; 
+import { data, options } from './DataBar'; 
 
 const Home = () => {
 
@@ -18,9 +19,16 @@ const Home = () => {
               type="progress"
               percent={50}
             />
+             <DashboardCard
+              title="Desempenho Trimestral de Vendas"
+              content="Comparação das Expectativas x Vendas por Trimestre no Ano Atual"
+              type="bar"
+              data= {data}
+              options={options}
+            />
             <DashboardCard
-              title="Gráfico de Pizza"
-              content="Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+              title="Desempenho Mensal de Vendas"
+              content="Comparação das Vendas por Mês no Ano Atual"
               type="pie"
               data={pieChartData}
             />
