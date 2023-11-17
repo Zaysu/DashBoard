@@ -95,27 +95,32 @@ export default function App() {
             <a
               href="/"
               className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
-              <ListDashes size={32} /> | Dashboard
+              <ListDashes size={32} /> | Resultados
             </a>
             <a
               href="/"
               className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
-              <CircleDashed size={32} /> | Kanban
+              <CircleDashed size={32} /> | Cadastro Desempenho
             </a>
             <a
               href="/"
               className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
-               <Gauge size={32} /> | Inbox
+               <Gauge size={32} /> | Cadastro Tendências de Venda
             </a>
             <a
               href="/"
               className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
-              <Basket size={32} /> | E-Commerce
+              <Basket size={32} /> | Cadastro Avaliação de Metas
             </a>
             <a
               href="/"
               className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
-             <Browsers size={32} /> | Pages
+             <Browsers size={32} /> | Cadastro Trimestral de Vendas
+            </a>
+            <a
+              href="/"
+              className='flex items-center gap-2 font-semibold text-gray-300 hover:text-white'>
+             <Browsers size={32} /> | Cadastro  Mensal de Vendas
             </a>
           </nav>
         </aside>
