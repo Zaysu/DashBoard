@@ -1,4 +1,4 @@
-Alunos: José Carlos Romão da silva Junior 
+Aluno: José Carlos Romão da silva Junior 
 Matricula: 202110818
 
 Aluno: Marcelo Gonçalves Braga Costa
