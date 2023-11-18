@@ -212,3 +212,25 @@ class MetasVendasView(APIView):
         dataObject = self.get_object(pk)
         dataObject.delete()
         return JsonResponse("Successfully", safe=False)
+
+
+class PorcentagemVendasView(APIView):
+    def get(self, request, format=None):
+        try:
+            # Obter todos os objetos do modelo DesempenhoMensalVendas
+            desempenhos = DesempenhoMensalVendas.objects.all()
+
+            # Filtrar os valores não nulos e somar
+            porcentagens = [desempenho.porcentagem_vendas for desempenho in desempenhos if desempenho.porcentagem_vendas is not None]
+            total_porcentagem = sum(porcentagens)
+
+            # Calcular a média das porcentagens
+            if porcentagens:
+                media_porcentagem = total_porcentagem / len(porcentagens)
+            else:
+                media_porcentagem = 0.0
+
+            return Response({'media_porcentagem': media_porcentagem, 'total_porcentagem': total_porcentagem})
+
+        except Exception as e:
+            return Response({'mensagem': str(e)}, status=500)

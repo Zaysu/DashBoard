@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import DesempenhoMensalVendasView, DesempenhoTrimestralVendasView, MetasVendasView, MetasTendenciasVendasView, DesempenhoEmpresarialView
+from .views import DesempenhoMensalVendasView, DesempenhoTrimestralVendasView, MetasVendasView, MetasTendenciasVendasView, DesempenhoEmpresarialView, PorcentagemVendasView
 
 urlpatterns = [
     path('desempenho-mensal-vendas/', DesempenhoMensalVendasView.as_view()),
@@ -12,5 +12,6 @@ urlpatterns = [
     path('metas-tendencias-vendas/<int:pk>', MetasTendenciasVendasView.as_view()),
     path('desempenho-empresarial/', DesempenhoEmpresarialView.as_view()),
     path('desempenho-empresarial/<int:pk>', DesempenhoEmpresarialView.as_view()),
+    path('porcentagem-vendas/', PorcentagemVendasView.as_view()),
     
 ]
