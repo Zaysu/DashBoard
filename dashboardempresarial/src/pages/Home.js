@@ -21,12 +21,12 @@ const Home = () => {
             <DashboardCardProgress
               title="Gráfico de Desempenho Empresarial"
               content="Análise de Desempenho Anual"
-              percent={percentagemVendas}
+              percent={30}
             />
             <DashboardCardProgress
               title="Gráfico de Tendências de Venda"
               content="Análise das Vendas Mensais ao Longo do Ano."
-              percent={40}
+              percent={percentagemVendas}
             />
             <DashboardCardProgress
               title="Gráfico de Avaliação de Metas"
