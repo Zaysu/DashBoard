@@ -29,7 +29,7 @@ const Home = () => {
               percent={40}
             />
             <DashboardCardProgress
-              title="Gráfico de Desempenho Empresarial"
+              title="Gráfico de Avaliação de Metas"
               content="Acompanhamento do Progresso em Direção às Metas Empresariais"
               percent={50}
             />
