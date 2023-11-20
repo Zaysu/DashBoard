@@ -9,8 +9,7 @@ const UpdateTargetSalesModal = (props) =>{
         updateTargetSales(props.targetSales.id, e.target)
         .then((result)=>{
             alert(result);
-            props.setUpdated(true);
-            props.onHide()
+            props.setUpdated(true)
         },
         (error) =>{
             alert("Não foi possível editar os Dados");
