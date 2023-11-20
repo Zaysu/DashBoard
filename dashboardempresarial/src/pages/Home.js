@@ -6,9 +6,12 @@ import DashboardCardBar from '../components/DashboardCardBar';
 import DashboardCardPie from '../components/DashboardCardPie';
 import { pieChartData } from '../components/ChartData'; 
 import { data, options } from '../components/DataBar'; 
+import useSalesPercentage from '../components/useSalesPercentage'; 
 
 
 const Home = () => {
+  const percentagemVendas = useSalesPercentage();
+
   return (
     <BasePage
       content={
@@ -23,10 +26,10 @@ const Home = () => {
             <DashboardCardProgress
               title="Gráfico de Tendências de Venda"
               content="Análise das Vendas Mensais ao Longo do Ano."
-              percent={40}
+              percent={percentagemVendas}
             />
             <DashboardCardProgress
-              title="Gráfico de Desempenho Empresarial"
+              title="Gráfico de Avaliação de Metas"
               content="Acompanhamento do Progresso em Direção às Metas Empresariais"
               percent={50}
             />
