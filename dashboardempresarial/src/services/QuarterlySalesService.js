@@ -35,3 +35,19 @@ export async function updateQuarterlySales(quar, quarterlySales){
     });
     return response.data;
 }
+
+export const fetchQuarterlySalesBar = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/bar-vendatrimestral/');
+      
+      if (!response.ok) {
+        throw new Error('Erro ao obter os dados da API');
+      }
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Ocorreu um erro:', error);
+      throw error;
+    }
+  };
