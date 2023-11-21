@@ -16,6 +16,6 @@ urlpatterns = [
     path('porcentagem-desempenhoempresarial/', PorcentagemDesempenhoEmpresarialView.as_view()),
     path('porcentagem-metas/', PorcentagemAvaliacaoMetasView.as_view()),
     path('bar-vendatrimestral/', VendasTrimestraisGraficoView.as_view()),
-    path('bar-vendamensal/', DesempenhoMensalGraficoView.as_view()),
+    path('pie-vendamensal/', DesempenhoMensalGraficoView.as_view()),
     
 ]

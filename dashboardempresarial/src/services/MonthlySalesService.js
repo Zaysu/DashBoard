@@ -49,7 +49,7 @@ export const fetchSalesPercentage = async () => {
 
   export const fetchMonthSalesBar = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/bar-vendamensal/');
+      const response = await fetch('http://127.0.0.1:8000/pie-vendamensal/');
       
       if (!response.ok) {
         throw new Error('Erro ao obter os dados da API');
