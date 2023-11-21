@@ -8,11 +8,13 @@ import { pieChartData } from '../components/ChartData';
 import { data, options } from '../components/DataBar'; 
 import useSalesPercentage from '../components/useSalesPercentage';
 import useBusinessPercentage from '../components/useBusinessPercentage'; 
+import useTargetSalesPercentage from '../components/useTargetSalesPercentage'; 
 
 
 const Home = () => {
   const percentagemVendas = useSalesPercentage();
   const percentagemBusiness = useBusinessPercentage();
+  const targetSalesPercentage = useTargetSalesPercentage();
 
   return (
     <BasePage
@@ -33,7 +35,7 @@ const Home = () => {
             <DashboardCardProgress
               title="Gráfico de Avaliação de Metas"
               content="Acompanhamento do Progresso em Direção às Metas Empresariais"
-              percent={50}
+              percent={targetSalesPercentage}
             />
           </div>
           <div className="flex">

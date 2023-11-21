@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchSalesPercentage } from '../services/salesPercentageService';
+import { fetchSalesPercentage } from '../services/MonthlySalesService';
 
 const useSalesPercentage = () => {
   const [percentagemVendas, setPercentagemVendas] = useState(0);
