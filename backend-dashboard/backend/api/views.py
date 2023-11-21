@@ -5,6 +5,7 @@ from .models import DesempenhoEmpresarial, DesempenhoMensalVendas, DesempenhoTri
 from .serializers import DesempenhoEmpresarialSerializer, DesempenhoMensalVendasSerializer, DesempenhoTrimestralVendasSerializer, MetasTendenciasVendasSerializer, MetasVendasSerializer
 from django.http.response import JsonResponse
 from django.http.response import Http404
+from django.db.models import Sum  
 
 class DesempenhoEmpresarialView(APIView):
     
@@ -234,3 +235,40 @@ class PorcentagemVendasView(APIView):
 
         except Exception as e:
             return Response({'mensagem': str(e)}, status=500)
+
+
+class PorcentagemDesempenhoEmpresarialView(APIView):
+    def get(self, request, format=None):
+        try:
+            # Obter todos os objetos do modelo DesempenhoMensalVendas
+            desempenhos = DesempenhoMensalVendas.objects.all()
+
+            # Filtrar os valores não nulos e somar
+            porcentagens = [desempenho.porcentagem_vendas for desempenho in desempenhos if desempenho.porcentagem_vendas is not None]
+            total_porcentagem = sum(porcentagens)
+
+            # Calcular a média das porcentagens
+            if porcentagens:
+                media_porcentagem = total_porcentagem / len(porcentagens)
+            else:
+                media_porcentagem = 0.0
+
+            return Response({'media_porcentagem': media_porcentagem, 'total_porcentagem': total_porcentagem})
+
+        except Exception as e:
+            return Response({'mensagem': str(e)}, status=500)
+
+
+class CalculoDesempenhoEmpresarial(APIView):
+    def get(self, request):
+        soma_total_venda_anual = DesempenhoEmpresarial.objects.aggregate(soma_total_venda_anual=Sum('totalVendaAnual'))
+
+        soma_expectativas = DesempenhoEmpresarial.objects.aggregate(soma_expectativas=Sum('espectativa'))
+
+        resultado_divisao = 0.0
+        if soma_expectativas['soma_expectativas'] != 0:
+            resultado_divisao = (soma_total_venda_anual['soma_total_venda_anual'] / soma_expectativas['soma_expectativas']) * 100
+
+        resultado_formatado = round(resultado_divisao, 2)
+
+        return Response({'porcentagem_por_ano': resultado_formatado})
