@@ -238,28 +238,6 @@ class PorcentagemVendasView(APIView):
 
 
 class PorcentagemDesempenhoEmpresarialView(APIView):
-    def get(self, request, format=None):
-        try:
-            # Obter todos os objetos do modelo DesempenhoMensalVendas
-            desempenhos = DesempenhoMensalVendas.objects.all()
-
-            # Filtrar os valores não nulos e somar
-            porcentagens = [desempenho.porcentagem_vendas for desempenho in desempenhos if desempenho.porcentagem_vendas is not None]
-            total_porcentagem = sum(porcentagens)
-
-            # Calcular a média das porcentagens
-            if porcentagens:
-                media_porcentagem = total_porcentagem / len(porcentagens)
-            else:
-                media_porcentagem = 0.0
-
-            return Response({'media_porcentagem': media_porcentagem, 'total_porcentagem': total_porcentagem})
-
-        except Exception as e:
-            return Response({'mensagem': str(e)}, status=500)
-
-
-class CalculoDesempenhoEmpresarial(APIView):
     def get(self, request):
         soma_total_venda_anual = DesempenhoEmpresarial.objects.aggregate(soma_total_venda_anual=Sum('totalVendaAnual'))
 
@@ -268,6 +246,30 @@ class CalculoDesempenhoEmpresarial(APIView):
         resultado_divisao = 0.0
         if soma_expectativas['soma_expectativas'] != 0:
             resultado_divisao = (soma_total_venda_anual['soma_total_venda_anual'] / soma_expectativas['soma_expectativas']) * 100
+
+        resultado_formatado = round(resultado_divisao, 2)
+
+        return Response({'porcentagem_por_ano': resultado_formatado})
+    
+    
+class PorcentagemAvaliacaoMetasView(APIView):
+    def get(self, request):
+        soma_total_venda_anual = MetasVendas.objects.aggregate(soma_total_venda_anual=Sum('totalVendaNoMes'))
+
+        soma_expectativas = MetasVendas.objects.aggregate(soma_expectativas=Sum('espectativa'))
+        
+        soma_valores = MetasVendas.objects.aggregate(soma_valores=Sum('valor'))
+
+        total_venda_anual = soma_total_venda_anual['soma_total_venda_anual'] or 0.0
+        espectativas = soma_expectativas['soma_expectativas'] or 0.0
+        valores = soma_valores['soma_valores'] or 0.0
+        
+        valor_venda_anual = total_venda_anual * valores
+        valor_espectativa = espectativas * valores
+
+        resultado_divisao = 0.0
+        if espectativas != 0:
+            resultado_divisao = (valor_venda_anual / valor_espectativa) * 100
 
         resultado_formatado = round(resultado_divisao, 2)
 
