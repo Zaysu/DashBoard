@@ -274,3 +274,42 @@ class PorcentagemAvaliacaoMetasView(APIView):
         resultado_formatado = round(resultado_divisao, 2)
 
         return Response({'porcentagem_por_ano': resultado_formatado})
+
+class VendasTrimestraisGraficoView(APIView):
+    def get(self, request):
+        queryset = MetasTendenciasVendas.objects.all()
+
+        labels = []
+        expectativa_vendas = []
+        vendas_realizadas = []
+
+        for obj in queryset:
+            labels.append(obj.mes)
+            expectativa_vendas.append(int(obj.espectativa)) 
+            vendas_realizadas.append(int(obj.totalVendaNoMes)) 
+
+        data = {
+            'labels': labels,
+            'expectativaVendas': expectativa_vendas,
+            'vendasRealizadas': vendas_realizadas
+        }
+
+        return Response(data)
+
+class DesempenhoMensalGraficoView(APIView):
+    def get(self, request):
+        queryset = DesempenhoMensalVendas.objects.all()
+
+        labels = []
+        porcentagem_vendas = []
+
+        for obj in queryset:
+            labels.append(obj.mes)
+            porcentagem_vendas.append(int(obj.porcentagem_vendas)) 
+
+        data = {
+            'labels': labels,
+            'porcentagem_vendas': porcentagem_vendas,
+        }
+
+        return Response(data)
