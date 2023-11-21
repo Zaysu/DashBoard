@@ -33,3 +33,15 @@ export async function updateBusinessPerformance(bus, businessPerformance){
     });
     return response.data;
 }
+
+
+export const fetchPerformaceBusinessPercentage = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/porcentagem-desempenhoempresarial/');
+      const porcentagem_por_ano = response.data.porcentagem_por_ano;
+      return porcentagem_por_ano;
+    } catch (error) {
+      console.error('Erro ao obter a porcentagem de desempenho empresarial:', error);
+      throw error; 
+    }
+  };

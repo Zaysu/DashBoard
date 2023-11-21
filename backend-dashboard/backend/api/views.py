@@ -5,6 +5,7 @@ from .models import DesempenhoEmpresarial, DesempenhoMensalVendas, DesempenhoTri
 from .serializers import DesempenhoEmpresarialSerializer, DesempenhoMensalVendasSerializer, DesempenhoTrimestralVendasSerializer, MetasTendenciasVendasSerializer, MetasVendasSerializer
 from django.http.response import JsonResponse
 from django.http.response import Http404
+from django.db.models import Sum  
 
 class DesempenhoEmpresarialView(APIView):
     
@@ -234,3 +235,92 @@ class PorcentagemVendasView(APIView):
 
         except Exception as e:
             return Response({'mensagem': str(e)}, status=500)
+
+
+class PorcentagemDesempenhoEmpresarialView(APIView):
+    def get(self, request):
+        try:
+            soma_total_venda_anual = DesempenhoEmpresarial.objects.aggregate(soma_total_venda_anual=Sum('totalVendaAnual'))
+            soma_expectativas = DesempenhoEmpresarial.objects.aggregate(soma_expectativas=Sum('espectativa'))
+
+            resultado_divisao = 0.0
+            if soma_expectativas['soma_expectativas'] != 0:
+                resultado_divisao = (soma_total_venda_anual['soma_total_venda_anual'] / soma_expectativas['soma_expectativas']) * 100
+
+            resultado_formatado = round(resultado_divisao, 2)
+
+            return Response({'porcentagem_por_ano': resultado_formatado})
+        except Exception as e:
+            return Response({'error': str(e)})
+
+
+class PorcentagemAvaliacaoMetasView(APIView):
+    def get(self, request):
+        try:
+            soma_total_venda_anual = MetasVendas.objects.aggregate(soma_total_venda_anual=Sum('totalVendaNoMes'))
+            soma_expectativas = MetasVendas.objects.aggregate(soma_expectativas=Sum('espectativa'))
+            soma_valores = MetasVendas.objects.aggregate(soma_valores=Sum('valor'))
+
+            total_venda_anual = soma_total_venda_anual['soma_total_venda_anual'] or 0.0
+            espectativas = soma_expectativas['soma_expectativas'] or 0.0
+            valores = soma_valores['soma_valores'] or 0.0
+
+            valor_venda_anual = total_venda_anual * valores
+            valor_espectativa = espectativas * valores
+
+            resultado_divisao = 0.0
+            if espectativas != 0:
+                resultado_divisao = (valor_venda_anual / valor_espectativa) * 100
+
+            resultado_formatado = round(resultado_divisao, 2)
+
+            return Response({'porcentagem_por_ano': resultado_formatado})
+        except Exception as e:
+            return Response({'error': str(e)})
+
+
+class VendasTrimestraisGraficoView(APIView):
+    def get(self, request):
+        try:
+            queryset = MetasTendenciasVendas.objects.all()
+
+            labels = []
+            expectativa_vendas = []
+            vendas_realizadas = []
+
+            for obj in queryset:
+                labels.append(obj.mes)
+                expectativa_vendas.append(int(obj.espectativa)) 
+                vendas_realizadas.append(int(obj.totalVendaNoMes)) 
+
+            data = {
+                'labels': labels,
+                'expectativaVendas': expectativa_vendas,
+                'vendasRealizadas': vendas_realizadas
+            }
+
+            return Response(data)
+        except Exception as e:
+            return Response({'error': str(e)})
+
+
+class DesempenhoMensalGraficoView(APIView):
+    def get(self, request):
+        try:
+            queryset = DesempenhoMensalVendas.objects.all()
+
+            labels = []
+            porcentagem_vendas = []
+
+            for obj in queryset:
+                labels.append(obj.mes)
+                porcentagem_vendas.append(int(obj.porcentagem_vendas)) 
+
+            data = {
+                'labels': labels,
+                'porcentagem_vendas': porcentagem_vendas,
+            }
+
+            return Response(data)
+        except Exception as e:
+            return Response({'error': str(e)})
