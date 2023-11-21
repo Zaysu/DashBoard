@@ -1,15 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { updateTargetSales } from "../services/TargetSalesService";
 import { AiOutlineClose } from 'react-icons/ai';
 
 const UpdateTargetSalesModal = (props) =>{
+
+    const [formData, setFormData] = useState({
+        espectativa: '',
+        totalVendaNoMes: '',
+        mes: '',
+        valor: ''
+    });
+
+    // Atualiza o estado local sempre que props.monthlySales mudar
+    useEffect(() => {
+        setFormData({
+            espectativa: props.targetSales.espectativa || '',
+            totalVendaNoMes: props.targetSales.totalVendaNoMes || '',
+            mes: props.targetSales.mes || '',
+            valor: props.targetSales.valor || ''
+        });
+    }, [props.targetSales]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
 
     const handleSumbit = (e) =>{
         e.preventDefault();
         updateTargetSales(props.targetSales.id, e.target)
         .then((result)=>{
             alert(result);
-            props.setUpdated(true)
+            props.setUpdated(true);
+            props.onHide()
         },
         (error) =>{
             alert("Não foi possível editar os Dados");
@@ -43,7 +69,8 @@ const UpdateTargetSalesModal = (props) =>{
                                         name="espectativa"
                                         required
                                         placeholder=""
-                                        defaultValue={props.data.espectativa}
+                                        value={formData.espectativa}
+                                        onChange={handleInputChange}
                                     />
                                 </div>
                                 <div className="mb-4">
@@ -56,7 +83,8 @@ const UpdateTargetSalesModal = (props) =>{
                                         name="totalVendaNoMes"
                                         required
                                         placeholder=""
-                                        defaultValue={props.data.totalVendaNoMes}
+                                        value={formData.totalVendaNoMes}
+                                        onChange={handleInputChange}
                                     />
                                 </div>
                                 <div className="mb-4">
@@ -69,7 +97,8 @@ const UpdateTargetSalesModal = (props) =>{
                                         name="mes"
                                         required
                                         placeholder=""
-                                        defaultValue={props.data.mes}
+                                        value={formData.mes}
+                                        onChange={handleInputChange}
                                     />
                                 </div>
                                 <div className="mb-4">
@@ -82,7 +111,8 @@ const UpdateTargetSalesModal = (props) =>{
                                         name="valor"
                                         required
                                         placeholder=""
-                                        defaultValue={props.data.valor}
+                                        value={formData.valor}
+                                        onChange={handleInputChange}
                                     />
                                 </div>
                                 <div className="flex justify-between items-center">
